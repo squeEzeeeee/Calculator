@@ -11,7 +11,7 @@
     tools:context=".MainActivity">
 
     <TextView
-        android:id="@+id/operation"
+        android:id="@+id/math_operation"
         android:layout_width="match_parent"
         android:layout_height="80sp"
         android:textColor="@color/white"
@@ -46,15 +46,19 @@
             android:layout_weight="1">
             <TextView
                 style="@style/ActionButton"
+                android:id="@+id/sum_btn"
                 android:text="+"/>
             <TextView
                 style="@style/ActionButton"
+                android:id="@+id/min_btn"
                 android:text="-"/>
             <TextView
                 style="@style/ActionButton"
+                android:id="@+id/divide_btn"
                 android:text="/"/>
             <TextView
                 style="@style/ActionButton"
+                android:id="@+id/multiply_btn"
                 android:text="*"/>
 
 
@@ -67,16 +71,21 @@
             android:layout_weight="1">
             <TextView
                 style="@style/NumberButton"
+                android:id="@+id/btn_1"
                 android:text="1"/>
             <TextView
                 style="@style/NumberButton"
+                android:id="@+id/btn_2"
                 android:text="2"/>
             <TextView
                 style="@style/NumberButton"
+                android:id="@+id/btn_3"
                 android:text="3"/>
             <TextView
                 style="@style/ActionButton"
-                android:text="="/>
+                android:id="@+id/clear_btn"
+                android:text="AC"/>
+
 
 
         </LinearLayout>
@@ -88,16 +97,21 @@
             android:layout_weight="1">
             <TextView
                 style="@style/NumberButton"
+                android:id="@+id/btn_4"
                 android:text="4"/>
             <TextView
                 style="@style/NumberButton"
+                android:id="@+id/btn_5"
                 android:text="5"/>
             <TextView
                 style="@style/NumberButton"
+                android:id="@+id/btn_6"
                 android:text="6"/>
             <TextView
                 style="@style/ActionButton"
-                android:text="AC"/>
+                android:id="@+id/bck_btn"
+                android:text="Back"
+                />
 
         </LinearLayout>
 
@@ -108,17 +122,20 @@
             android:layout_weight="1">
             <TextView
                 style="@style/NumberButton"
+                android:id="@+id/btn_7"
                 android:text="7"/>
             <TextView
                 style="@style/NumberButton"
+                android:id="@+id/btn_8"
                 android:text="8"/>
             <TextView
                 style="@style/NumberButton"
+                android:id="@+id/btn_9"
                 android:text="9"/>
             <TextView
                 style="@style/ActionButton"
-                android:text="<--"
-                />
+                android:text="="/>
+
         </LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"
@@ -127,16 +144,15 @@
             android:layout_weight="1">
             <TextView
                 style="@style/NumberButton"
-                android:text="."/>
-            <TextView
-                style="@style/NumberButton"
+                android:id="@+id/btn_0"
+                android:layout_weight="0.3"
                 android:text="0"/>
+
             <TextView
                 style="@style/NumberButton"
-                android:text="Back"/>
-            <TextView
-                style="@style/ActionButton"
-                android:text="="/>
+                android:id="@+id/point_btn"
+                android:layout_weight="0.3"
+                android:text="."/>
 
 
         </LinearLayout>
