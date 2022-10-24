@@ -1,0 +1,17 @@
+clear_btn.setOnClickListener {
+            math_operation.text = ""
+            result.text = ""
+        }
+
+        bck_btn.setOnClickListener {
+            val str = math_operation.text.toString()
+            if (str.isNotEmpty())
+                math_operation.text = str.substring(0, str.length - 1)
+        }
+
+    }
+
+    fun setTextFields(str: String) {
+        math_operation.append(str)
+    }
+}

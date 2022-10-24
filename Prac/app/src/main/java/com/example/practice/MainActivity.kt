@@ -3,43 +3,155 @@ package com.example.practice
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import kotlinx.android.synthetic.main.activity_main.*
+import com.example.practice.databinding.ActivityMainBinding
 
 
 class MainActivity : AppCompatActivity() {
+    lateinit var myBinding: ActivityMainBinding
+    var firstNumber: Int? = null
+    var secondNumber: Int? = null
+    var currentNumber = ""
+    var operator = ""
+    var numberPressed = false
+    var operatorPressed = false
+   
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
+
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        btn_0.setOnClickListener { setTextFields("0") }
-        btn_1.setOnClickListener { setTextFields("1") }
-        btn_2.setOnClickListener { setTextFields("2") }
-        btn_3.setOnClickListener { setTextFields("3") }
-        btn_4.setOnClickListener { setTextFields("4") }
-        btn_5.setOnClickListener { setTextFields("5") }
-        btn_6.setOnClickListener { setTextFields("6") }
-        btn_7.setOnClickListener { setTextFields("7") }
-        btn_8.setOnClickListener { setTextFields("8") }
-        btn_9.setOnClickListener { setTextFields("9") }
-        sum_btn.setOnClickListener { setTextFields("+") }
-        min_btn.setOnClickListener { setTextFields("-") }
-        divide_btn.setOnClickListener { setTextFields("/") }
-        multiply_btn.setOnClickListener { setTextFields("*") }
+        myBinding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(myBinding.root)
 
-        clear_btn.setOnClickListener {
-            math_operation.text= ""
-            result.text=""
+
+
+        // Numbers
+        myBinding.btn0.setOnClickListener {
+            myBinding.mathOperation.append("0")
+            currentNumber += "0"
+            numberPressed = true
+            if (operatorPressed) {
+                firstNumber = currentNumber.toInt()
+            } else {
+                secondNumber = currentNumber.toInt()
+            }
+
         }
 
-        bck_btn.setOnClickListener {
-            val str=math_operation.text.toString()
-            if(str.isNotEmpty())
-                math_operation.text= str.substring(0,str.length-1)
+        myBinding.btn1.setOnClickListener {
+            myBinding.mathOperation.append("1")
         }
+
+        myBinding.btn2.setOnClickListener {
+            myBinding.mathOperation.append("2")
+        }
+
+        myBinding.btn3.setOnClickListener {
+            myBinding.mathOperation.append("3")
+        }
+
+        myBinding.btn4.setOnClickListener {
+            myBinding.mathOperation.append("4")
+        }
+
+        myBinding.btn5.setOnClickListener {
+            myBinding.mathOperation.append("5")
+        }
+
+        myBinding.btn6.setOnClickListener {
+            myBinding.mathOperation.append("6")
+        }
+
+        myBinding.btn7.setOnClickListener {
+            myBinding.mathOperation.append("7")
+        }
+
+        myBinding.btn8.setOnClickListener {
+            myBinding.mathOperation.append("8")
+        }
+
+        myBinding.btn9.setOnClickListener {
+            myBinding.mathOperation.append("9")
+        }
+        // Operations
+        myBinding.sumBtn.setOnClickListener {
+            myBinding.mathOperation.append("+")
+            operator = "+"
+            operatorPressed = true
+        }
+
+        myBinding.minBtn.setOnClickListener {
+            myBinding.mathOperation.append("-")
+            operator = "-"
+            operatorPressed = true
+        }
+
+        myBinding.multiplyBtn.setOnClickListener {
+            myBinding.mathOperation.append("*")
+            operator = "*"
+            operatorPressed = true
+        }
+
+        myBinding.divideBtn.setOnClickListener {
+            myBinding.mathOperation.append("/")
+            operator = "/"
+            operatorPressed = true
+        }
+
+        myBinding.bckBtn.setOnClickListener {
+            val str = myBinding.mathOperation.text.toString()
+            if (str.isNotEmpty()) {
+                myBinding.mathOperation.text = str.substring(0, str.length - 1)
+            }
+        }
+
+
+        myBinding.clearBtn.setOnClickListener {
+            myBinding.mathOperation.text = ""
+            myBinding.result.text = ""
+            numberPressed = false
+            operatorPressed = false
+        }
+
+
 
     }
 
-    fun setTextFields(str: String) {
-    math_operation.append(str)
+    fun calculateResult(firstNumber: Int, operator: String, secondNumber: Int): Int? {
+        var result: Int? = null
+        when (operator) {
+            "+" -> {
+                result = firstNumber + secondNumber
+            }
+
+            "-" -> {
+                result = firstNumber - secondNumber
+            }
+
+            "*" -> {
+                result = firstNumber * secondNumber
+            }
+
+            "/" -> {
+                try {
+                    result = firstNumber / secondNumber
+                } catch (_: java.lang.ArithmeticException) {
+                    myBinding.result.text = "Error"
+                    this.firstNumber= null
+                    this.secondNumber= null
+                    this.currentNumber = ""
+                    this.operator = ""
+                    this.numberPressed = false
+                    this.operatorPressed = false
+                    myBinding.mathOperation.text= ""
+
+                }
+
+            }
+
+        }
+    return result
     }
+
 }
